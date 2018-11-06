@@ -10,6 +10,14 @@ router.get('/', function(req, res) {
     })
 })
 
+//Get /movies/:id/edit
+router.get('/:id/edit', function(req, res) {
+  Movie.findById(req.params.id)
+    .then( function(movie) {
+      return res.render('edit', { movie: movie})
+    })
+})
+
 //Delete /movies/:id
 router.delete('/:id', function(req, res) {
   Movie.findById(req.params.id)
