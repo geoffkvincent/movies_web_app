@@ -10,6 +10,17 @@ router.get('/', function(req, res) {
     })
 })
 
+//Delete /movies/:id
+router.delete('/:id', function(req, res) {
+  Movie.findById(req.params.id)
+    .then( function(movie) {
+      movie.destroy()
+    })
+    .then( function() {
+      return res.redirect('/movies')
+    })
+})
+
 //Post /movies
 router.post('/', function(req, res) {
   var title = req.body.title
