@@ -10,6 +10,17 @@ router.get('/', function(req, res) {
     })
 })
 
+//PUT /movies/:id
+router.put('/:id', function(req, res) {
+  Movie.update(
+    { title: req.body.title },
+    { where: { id: req.params.id } }
+  )
+  .then( function() {
+    return res.redirect('/movies')
+  })
+})
+
 //Get /movies/:id/edit
 router.get('/:id/edit', function(req, res) {
   Movie.findById(req.params.id)
