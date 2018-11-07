@@ -4,7 +4,11 @@ var Movie = require('../models').Movie
 
 //Get /movies
 router.get('/', function(req, res) {
-  Movie.all()
+  Movie.all({
+    order: [
+      ['createdAt', 'ASC']
+    ]
+  })
     .then(function(movies) {
     return res.render('movies', { movies: movies})
     })
